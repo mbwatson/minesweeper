@@ -1,17 +1,20 @@
 // Dimensions
 var dim = 600;
-var res = 30;
+var res = 60;
 var cells;
 var cols;
 var rows;
+
 // Colors
 var bombColor;
 var hiddenColor;
 var revealedColor;
 var markedColor;
 
-// Game Vars
+// Game Control Vars
 var alive = true;
+var mineCount = 0;
+var revealedCount = 0;
 
 function make2DArray(cols, rows) {
 	var arr = new Array(cols);
@@ -21,10 +24,26 @@ function make2DArray(cols, rows) {
 	return arr;
 }
 
+function countMines() {
+	var count = 0
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			var cell = cells[i][j];
+			if (cell.isBomb) {
+				count += 1; 
+			}
+		}
+	}
+	return count;
+}
+
 function revealAllCells() {
 	for (var i = 0; i < cols; i++) {
 		for (var j = 0; j < rows; j++) {
-			cells[i][j].hidden = false;
+			var cell = cells[i][j];
+			revealedCount += cell.reveal();
+			console.log("Reveal (" + i +"," + j + ")"  )
+			console.log(revealedCount);
 		}
 	}
 }
@@ -49,6 +68,7 @@ function setup() {
 		}
 	}
 	alive = true;
+	mineCount = countMines();
 }
 
 function draw() {
@@ -89,8 +109,10 @@ function mouseReleased() {
 			for (var r = 0; r < rows; r++) {
 				if (cells[c][r].contains(mouseX, mouseY)) {
 					var cell = cells[c][r];
-					console.log("Reveal cell " + c + "," + r);
-					cell.reveal();
+					if (cell.hidden) {
+						console.log("Reveal (" + c +"," + r + ")"  )
+						revealedCount += cell.reveal();
+					}
 					if (cell.isBomb) {
 						revealAllCells();
 						console.log("Game over. Deal with this later.")
@@ -115,6 +137,7 @@ function mouseReleased() {
 			}
 		}
 	}
+	console.log(revealedCount);
 	return false;
 }
 
@@ -124,7 +147,7 @@ function revealNeighbors(i, j) {
 			if (0 <= i+c && i+c < cols && 0 <= j+r && j+r < rows) {
 				var neighbor = cells[i + c][j + r];
 				if (!neighbor.isBomb && neighbor.hidden) {
-					neighbor.reveal();
+					revealedCount += neighbor.reveal();
 					if (neighbor.value == 0) {
 						revealNeighbors(i+c, j+r);
 					}
