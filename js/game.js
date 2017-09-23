@@ -1,6 +1,6 @@
 // Dimensions
 var dim = 600;
-var res = 60;
+var res = 120;
 var cells;
 var cols;
 var rows;
@@ -37,11 +37,14 @@ function countMines() {
 	return count;
 }
 
+function gameWon() {
+	return (revealedCount + mineCount == (floor(dim / res))**2);
+}
+
 function revealAllCells() {
 	for (var i = 0; i < cols; i++) {
 		for (var j = 0; j < rows; j++) {
-			var cell = cells[i][j];
-			revealedCount += cell.reveal();
+			revealedCount += cells[i][j].reveal();
 			console.log("Reveal (" + i +"," + j + ")"  )
 			console.log(revealedCount);
 		}
@@ -125,6 +128,11 @@ function mouseReleased() {
 				}
 			}
 		}
+		if (gameWon() == true) {
+			console.log("Winner!");
+		} else {
+			console.log("Keep it up!");
+		}
 	}
 	// mark
 	if (mouseButton == RIGHT) {
@@ -137,7 +145,6 @@ function mouseReleased() {
 			}
 		}
 	}
-	console.log(revealedCount);
 	return false;
 }
 
