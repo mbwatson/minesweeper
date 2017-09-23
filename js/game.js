@@ -52,8 +52,10 @@ function draw() {
 		}
 	}
 	timeNow = new Date;
-	timeElapsed = floor((timeNow - timeBegin)/1000);
-	timeDiv.html(timeElapsed);
+	if (alive) {
+		timeElapsed = floor((timeNow - timeBegin)/1000);
+	}
+	timeDiv.html('Time: ' + timeElapsed);
 }
 
 function newGame() {
@@ -76,7 +78,7 @@ function newGame() {
 function createUI() {
 	gameControlDiv = createDiv('').id('ui');
 	gameControlDiv.child(restartButton = createButton('Restart', ''));
-	gameControlDiv.child(timeDiv = createDiv('')).id('time');
+	gameControlDiv.child(timeDiv = createDiv('Time: ')).id('time');
   restartButton.mouseClicked(newGame);
 }
 
