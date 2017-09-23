@@ -16,12 +16,60 @@ var alive = true;
 var mineCount = 0;
 var revealedCount = 0;
 
+// UI
+var gameControlDiv;
+var restartButton;
+
 function make2DArray(cols, rows) {
 	var arr = new Array(cols);
 	for (var i = 0; i < arr.length; i++) {
 		arr[i] = new Array(rows);
 	}
 	return arr;
+}
+
+function createUI() {
+	gameControlDiv = createDiv('').id('ui');
+	gameControlDiv.child(restartButton = createButton('Restart', ''));
+
+  restartButton.mouseClicked(newGame);
+}
+
+function setup() {
+	mineColor = color(255, 0, 0);
+	hiddenColor = color(210, 210, 220);
+	revealedColor = color(150, 190, 210);
+	markedColor = color(255, 127, 31);
+	cols = floor(width / res);
+	rows = floor(height / res);
+	cells = make2DArray(20, 20);
+	createUI();
+	createCanvas(dim + 1, dim + 1);
+	newGame();
+}
+
+function newGame() {
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			cells[i][j] = new Cell(i * res, j * res, random() < 0.15);
+		}
+	}
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			cells[i][j].value = countNeighborMines(i, j);
+		}
+	}
+	alive = true;
+	mineCount = countMines();
+}
+
+function draw() {
+	background(51);
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			cells[i][j].show();
+		}
+	}
 }
 
 function countMines() {
@@ -51,50 +99,18 @@ function revealAllCells() {
 	}
 }
 
-function setup() {
-	createCanvas(dim + 1, dim + 1);
-	mineColor = color(255, 0, 0);
-	hiddenColor = color(210, 210, 220);
-	revealedColor = color(150, 190, 210);
-	markedColor = color(255, 127, 31);
-	cols = floor(width / res);
-	rows = floor(height / res);
-	cells = make2DArray(20, 20);
-	for (var i = 0; i < cols; i++) {
-		for (var j = 0; j < rows; j++) {
-			cells[i][j] = new Cell(i * res, j * res, random() < 0.15);
-		}
-	}
-	for (var i = 0; i < cols; i++) {
-		for (var j = 0; j < rows; j++) {
-			cells[i][j].value = countNeighborBombs(i, j);
-		}
-	}
-	alive = true;
-	mineCount = countMines();
-}
-
-function draw() {
-	background(51);
-	for (var i = 0; i < cols; i++) {
-		for (var j = 0; j < rows; j++) {
-			cells[i][j].show();
-		}
-	}
-}
-
-function countNeighborBombs(i, j) {
-	var bombCount = 0;
+function countNeighborMines(i, j) {
+	var mineCount = 0;
 	for (var c = -1; c <= 1; c++) {
 		for (var r = -1; r <=1; r++) {
 			if (0 <= i+c && i+c < cols && 0 <= j+r && j+r < rows) {
 				if (cells[i + c][j + r].isMine === true) {
-					bombCount++;
+					mineCount++;
 				}
 			}
 		}
 	}
-	return bombCount;
+	return mineCount;
 }
 
 function mousePressed() {
