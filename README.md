@@ -1,2 +1,2 @@
-# Mindesweeper
+# Minesweeper
 
