@@ -11,10 +11,13 @@ var hiddenColor;
 var revealedColor;
 var markedColor;
 
-// Game Control Vars
+// Game Vars
 var alive = true;
 var mineCount = 0;
 var revealedCount = 0;
+var timeBegin = new Date;
+var timeNow = new Date;
+var timeElapsed = 0;
 
 // UI
 var gameControlDiv;
@@ -48,6 +51,9 @@ function draw() {
 			cells[i][j].show();
 		}
 	}
+	timeNow = new Date;
+	timeElapsed = floor((timeNow - timeBegin)/1000);
+	timeDiv.html(timeElapsed);
 }
 
 function newGame() {
@@ -64,12 +70,13 @@ function newGame() {
 	alive = true;
 	mineCount = countMines();
 	revealedCount = 0;
+	timeBegin = new Date();
 }
 
 function createUI() {
 	gameControlDiv = createDiv('').id('ui');
 	gameControlDiv.child(restartButton = createButton('Restart', ''));
-
+	gameControlDiv.child(timeDiv = createDiv('')).id('time');
   restartButton.mouseClicked(newGame);
 }
 
