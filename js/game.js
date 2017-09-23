@@ -6,7 +6,7 @@ var cols;
 var rows;
 
 // Colors
-var bombColor;
+var mineColor;
 var hiddenColor;
 var revealedColor;
 var markedColor;
@@ -29,7 +29,7 @@ function countMines() {
 	for (var i = 0; i < cols; i++) {
 		for (var j = 0; j < rows; j++) {
 			var cell = cells[i][j];
-			if (cell.isBomb) {
+			if (cell.isMine) {
 				count += 1; 
 			}
 		}
@@ -53,7 +53,7 @@ function revealAllCells() {
 
 function setup() {
 	createCanvas(dim + 1, dim + 1);
-	bombColor = color(255, 0, 0);
+	mineColor = color(255, 0, 0);
 	hiddenColor = color(210, 210, 220);
 	revealedColor = color(150, 190, 210);
 	markedColor = color(255, 127, 31);
@@ -88,7 +88,7 @@ function countNeighborBombs(i, j) {
 	for (var c = -1; c <= 1; c++) {
 		for (var r = -1; r <=1; r++) {
 			if (0 <= i+c && i+c < cols && 0 <= j+r && j+r < rows) {
-				if (cells[i + c][j + r].isBomb === true) {
+				if (cells[i + c][j + r].isMine === true) {
 					bombCount++;
 				}
 			}
@@ -116,7 +116,7 @@ function mouseReleased() {
 						console.log("Reveal (" + c +"," + r + ")"  )
 						revealedCount += cell.reveal();
 					}
-					if (cell.isBomb) {
+					if (cell.isMine) {
 						revealAllCells();
 						console.log("Game over.")
 						alive = false;
@@ -151,7 +151,7 @@ function revealNeighbors(i, j) {
 		for (var r = -1; r <=1; r++) {
 			if (0 <= i+c && i+c < cols && 0 <= j+r && j+r < rows) {
 				var neighbor = cells[i + c][j + r];
-				if (!neighbor.isBomb && neighbor.hidden) {
+				if (!neighbor.isMine && neighbor.hidden) {
 					revealedCount += neighbor.reveal();
 					if (neighbor.value == 0) {
 						revealNeighbors(i+c, j+r);

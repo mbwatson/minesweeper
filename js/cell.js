@@ -1,7 +1,7 @@
-function Cell(x, y, isBomb) {
+function Cell(x, y, isMine) {
 	this.x = x;
 	this.y = y;
-	this.isBomb = isBomb || false;
+	this.isMine = isMine || false;
 	this.hidden = true;
 	this.value = -1;
 	this.fillcolor = hiddenColor;
@@ -18,7 +18,7 @@ function Cell(x, y, isBomb) {
 		} else {
 			fill(revealedColor);
 			rect(this.x, this.y, res, res);
-			if (this.isBomb) {
+			if (this.isMine) {
 				fill(150, 50, 50);
 				ellipse(this.x + res/2, this.y + res/2, 0.75*res, 0.75*res);
 			} else {
@@ -38,6 +38,9 @@ function Cell(x, y, isBomb) {
 	this.reveal = function() {
 		if (this.hidden === true) {
 			this.hidden = false;
+			return 1;
+		} else {
+			return 0;
 		}
 	}
 
