@@ -28,14 +28,9 @@ function make2DArray(cols, rows) {
 	return arr;
 }
 
-function createUI() {
-	gameControlDiv = createDiv('').id('ui');
-	gameControlDiv.child(restartButton = createButton('Restart', ''));
-
-  restartButton.mouseClicked(newGame);
-}
-
 function setup() {
+	createUI();
+	createCanvas(dim + 1, dim + 1);
 	mineColor = color(255, 0, 0);
 	hiddenColor = color(210, 210, 220);
 	revealedColor = color(150, 190, 210);
@@ -43,9 +38,16 @@ function setup() {
 	cols = floor(width / res);
 	rows = floor(height / res);
 	cells = make2DArray(20, 20);
-	createUI();
-	createCanvas(dim + 1, dim + 1);
 	newGame();
+}
+
+function draw() {
+	background(51);
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			cells[i][j].show();
+		}
+	}
 }
 
 function newGame() {
@@ -61,16 +63,16 @@ function newGame() {
 	}
 	alive = true;
 	mineCount = countMines();
+	revealedCount = 0;
 }
 
-function draw() {
-	background(51);
-	for (var i = 0; i < cols; i++) {
-		for (var j = 0; j < rows; j++) {
-			cells[i][j].show();
-		}
-	}
+function createUI() {
+	gameControlDiv = createDiv('').id('ui');
+	gameControlDiv.child(restartButton = createButton('Restart', ''));
+
+  restartButton.mouseClicked(newGame);
 }
+
 
 function countMines() {
 	var count = 0
