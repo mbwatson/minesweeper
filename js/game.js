@@ -1,6 +1,6 @@
 // Dimensions
 var dim = 600;
-var res = 120;
+var res = 60;
 var cells;
 var cols;
 var rows;
@@ -84,17 +84,17 @@ function draw() {
 }
 
 function countNeighborBombs(i, j) {
-	var bomb_count = 0;
+	var bombCount = 0;
 	for (var c = -1; c <= 1; c++) {
 		for (var r = -1; r <=1; r++) {
 			if (0 <= i+c && i+c < cols && 0 <= j+r && j+r < rows) {
 				if (cells[i + c][j + r].isBomb === true) {
-					bomb_count++;
+					bombCount++;
 				}
 			}
 		}
 	}
-	return bomb_count;
+	return bombCount;
 }
 
 function mousePressed() {
@@ -118,7 +118,7 @@ function mouseReleased() {
 					}
 					if (cell.isBomb) {
 						revealAllCells();
-						console.log("Game over. Deal with this later.")
+						console.log("Game over.")
 						alive = false;
 					} else {
 						if (cell.value == 0) {
@@ -130,8 +130,6 @@ function mouseReleased() {
 		}
 		if (gameWon() == true) {
 			console.log("Winner!");
-		} else {
-			console.log("Keep it up!");
 		}
 	}
 	// mark
