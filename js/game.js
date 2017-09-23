@@ -34,7 +34,7 @@ function setup() {
 	bombColor = color(255, 0, 0);
 	hiddenColor = color(210, 210, 220);
 	revealedColor = color(150, 190, 210);
-	markedColor = color(100, 255, 100);
+	markedColor = color(255, 127, 31);
 	cols = floor(width / res);
 	rows = floor(height / res);
 	cells = make2DArray(20, 20);
