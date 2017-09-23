@@ -8,6 +8,16 @@ var rows;
 var bombColor;
 var hiddenColor;
 var revealedColor;
+// Game Vars
+var Alive = true;
+
+function revealAllCells() {
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			cells[i][j].hidden = false;
+		}
+	}
+}
 
 function make2DArray(cols, rows) {
 	var arr = new Array(cols);
@@ -70,6 +80,7 @@ function mouseReleased() {
 					console.log("Reveal cell " + c + "," + r);
 					cell.reveal();
 					if (cell.isBomb) {
+						revealAllCells();
 						console.log("Game over. Deal with this later.")
 					} else {
 						if (cell.value == 0) {
