@@ -5,10 +5,15 @@ function Cell(x, y, isBomb) {
 	this.hidden = true;
 	this.value = -1;
 	this.fillcolor = hiddenColor;
+	this.marked = false;
 
 	this.show = function() {
 		if (this.hidden) {
-			fill(hiddenColor);
+			if (this.marked) {
+				fill(markedColor);
+			} else {
+				fill(hiddenColor);
+			}
 			rect(this.x, this.y, res, res);
 		} else {
 			fill(revealedColor);
@@ -33,6 +38,18 @@ function Cell(x, y, isBomb) {
 	this.reveal = function() {
 		if (this.hidden === true) {
 			this.hidden = false;
+		}
+	}
+
+	this.mark = function() {
+		if (this.hidden) {
+			if (this.marked) {
+				this.marked = false;
+				console.log("Unmark cell " + this.x/res + "," + this.y/res);
+			} else {
+				this.marked = true;
+				console.log("Mark cell " + this.x/res + "," + this.y/res);
+			}
 		}
 	}
 

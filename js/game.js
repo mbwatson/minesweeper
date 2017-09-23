@@ -8,16 +8,10 @@ var rows;
 var bombColor;
 var hiddenColor;
 var revealedColor;
-// Game Vars
-var Alive = true;
+var markedColor;
 
-function revealAllCells() {
-	for (var i = 0; i < cols; i++) {
-		for (var j = 0; j < rows; j++) {
-			cells[i][j].hidden = false;
-		}
-	}
-}
+// Game Vars
+var alive = true;
 
 function make2DArray(cols, rows) {
 	var arr = new Array(cols);
@@ -27,11 +21,20 @@ function make2DArray(cols, rows) {
 	return arr;
 }
 
+function revealAllCells() {
+	for (var i = 0; i < cols; i++) {
+		for (var j = 0; j < rows; j++) {
+			cells[i][j].hidden = false;
+		}
+	}
+}
+
 function setup() {
 	createCanvas(dim + 1, dim + 1);
 	bombColor = color(255, 0, 0);
 	hiddenColor = color(210, 210, 220);
 	revealedColor = color(150, 190, 210);
+	markedColor = color(100, 255, 100);
 	cols = floor(width / res);
 	rows = floor(height / res);
 	cells = make2DArray(20, 20);
@@ -45,6 +48,7 @@ function setup() {
 			cells[i][j].value = countNeighborBombs(i, j);
 		}
 	}
+	alive = true;
 }
 
 function draw() {
@@ -70,7 +74,15 @@ function countNeighborBombs(i, j) {
 	return bomb_count;
 }
 
+function mousePressed() {
+	return false;
+}
+
 function mouseReleased() {
+	if (!alive) {
+		console.log("Game still over.")
+		return -1;
+	}
 	// reveal
 	if (mouseButton == LEFT) {
 		for (var c = 0; c < cols; c++) {
@@ -82,6 +94,7 @@ function mouseReleased() {
 					if (cell.isBomb) {
 						revealAllCells();
 						console.log("Game over. Deal with this later.")
+						alive = false;
 					} else {
 						if (cell.value == 0) {
 							revealNeighbors(c, r);
@@ -96,15 +109,13 @@ function mouseReleased() {
 		for (var c = 0; c < cols; c++) {
 			for (var r = 0; r < rows; r++) {
 				if (cells[c][r].contains(mouseX, mouseY)) {
-					console.log("Mark cell " + c + "," + r);
+					var cell = cells[c][r];
+					cell.mark();
 				}
 			}
 		}
 	}
 	return false;
-}
-
-function mouseClicked() {
 }
 
 function revealNeighbors(i, j) {
@@ -121,5 +132,8 @@ function revealNeighbors(i, j) {
 			}
 		}
 	}
+}
 
+function restart() {
+	setup()
 }
