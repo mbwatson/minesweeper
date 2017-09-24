@@ -54,8 +54,8 @@ function draw() {
 	timeNow = new Date;
 	if (alive) {
 		timeElapsed = floor((timeNow - timeBegin)/1000);
+		timeDiv.html('Time: ' + timeElapsed);
 	}
-	timeDiv.html('Time: ' + timeElapsed);
 }
 
 function newGame() {
