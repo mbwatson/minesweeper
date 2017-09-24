@@ -48,10 +48,10 @@ function Cell(x, y, isMine) {
 		if (this.hidden) {
 			if (this.marked) {
 				this.marked = false;
-				console.log("Unmark cell " + this.x/res + "," + this.y/res);
+				console.log("Unmark cell (" + this.x/res + "," + this.y/res + ")");
 			} else {
 				this.marked = true;
-				console.log("Mark cell " + this.x/res + "," + this.y/res);
+				console.log("Mark cell (" + this.x/res + "," + this.y/res + ")");
 			}
 		}
 	}
