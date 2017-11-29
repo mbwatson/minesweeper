@@ -1,5 +1,5 @@
 // Dimensions
-const sideLength = 500;
+const sideLength = 600;
 const res = 50; // resolution, i.e., number of cells in each row/column
 const colors = {};
 const mineProbability = 0.15;
