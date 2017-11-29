@@ -10,7 +10,6 @@ function setup() {
 	colors.revealed = color(150, 190, 210);
 	colors.mine = color(200,50,50);
 	colors.marked = color(255, 127, 31);
-	// create canvas
 	createCanvas(sideLength + 1, sideLength + 1);
 	// calculate how to chop the canvas
 	cols = floor(width / res);

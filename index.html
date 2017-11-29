@@ -13,29 +13,31 @@
 <body oncontextmenu="return false;">
 
 <div id="ui">
-  <div class="title">Minesweeper</div>
-  <div class="instructions">
-    <span class="title">Instructions</span>
-    <p>
-      The game begins with a grid of cells, each of which is concealed.
-      Some of the cells contain mines.
-      The goal of the game is to determine all cells that are not mines.
-    </p>
-    <p>
-      Left-clicking on a cell reveals it.
-      If it is a mine, the game is over.
-      Otherwise, it is labeled with a number indicating
-       the number of its neighboring cells that are mines.
-      (No label indicates zero neighboring mines.)
-      Revealing a cell with no neighboring mines will reveal its neighboring cells.
-    </p>
-    <p>
-      To aid your deduction process,
-      you can mark cells you believe to be mines by right-cliking them.
-    </p>
-    <p>
-      Note: Currently, the cells have a 15% probability of being a mine.
-    </p>
+  <div class="page-title">Minesweeper</div>
+  <div class="instructions-container">
+    <span class="title">Instructions</span> <span id="instructions-toggler" class="up-arrow"></span>
+    <div class="instructions">
+      <p>
+        The game begins with a grid of cells, each of which is concealed.
+        Some of the cells contain mines.
+        The goal of the game is to determine all cells that are not mines.
+      </p>
+      <p>
+        Left-clicking on a cell reveals it.
+        If it is a mine, the game is over.
+        Otherwise, it is labeled with a number indicating
+         the number of its neighboring cells that are mines.
+        (No label indicates zero neighboring mines.)
+        Revealing a cell with no neighboring mines will reveal its neighboring cells.
+      </p>
+      <p>
+        To aid your deduction process,
+        you can mark cells you believe to be mines by right-cliking them.
+      </p>
+      <p>
+        Note: Currently, the cells have a 15% probability of being a mine.
+      </p>
+    </div>
   </div>
   <div class="stats">
     <p>Mines: <span id="mines-count"></span></p>
@@ -51,5 +53,9 @@
     <span id="message"></span>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+<script src="assets/js/toggleInstructions.js"></script>
+
 </body>
 </html>

@@ -1,27 +1,47 @@
+@charset "UTF-8";
 body {
   text-align: center;
-  margin: 25px auto;
+  padding: 25px;
   font-family: 'sans serif';
   font-size: 12pt; }
 
 #ui {
-  text-align: left;
-  margin: 0 50px;
+  max-width: 600px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-areas: "title title title" "instructions instructions instructions" "stats timer restart" "messenger messenger messenger"; }
 
-.title {
+.page-title {
   grid-area: title;
   text-align: center;
   font-weight: bold;
   font-size: 150%; }
 
-.instructions {
+.instructions-container {
+  text-align: left;
   grid-area: instructions;
-  font-size: 75%; }
-  .instructions .title {
-    font-weight: bold; }
+  border: 1px solid #ccd;
+  border-width: 0 0 1px 0;
+  padding: 1px; }
+  .instructions-container .title {
+    font-weight: bold;
+    padding: 2px; }
+  .instructions-container .instructions {
+    font-size: 75%;
+    color: #667; }
+
+.up-arrow, .down-arrow {
+  color: #778;
+  font-size: 75%;
+  cursor: pointer;
+  margin-left: 1em; }
+
+.up-arrow:before {
+  content: "▲"; }
+
+.down-arrow:before {
+  content: "▼"; }
 
 .stats {
   grid-area: stats; }
@@ -30,16 +50,15 @@ body {
 
 .timer {
   grid-area: timer;
-  margin: auto;
+  margin: auto auto 0 auto;
   font-size: 150%; }
   .timer #game-timer {
     grid-area: timer;
-    font-weight: bold;
-    font-family: "monospace"; }
+    font-weight: bold; }
 
 .restart {
   grid-area: restart;
-  margin: auto; }
+  margin: auto 0 1em auto; }
   .restart .button {
     background-color: #fff;
     border-radius: 5px;
