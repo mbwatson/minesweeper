@@ -15,15 +15,40 @@
   	}
   	#ui {
   		border: 1px solid #ccc;
-  		text-align: center;
+  		text-align: left;
   		padding: 5px;
-  		margin: 25px;
+  		margin: 50px;
   	}
+    #title {
+      text-align: center;
+      font-weight: bold;
+    }
+    #instructions {
+    }
     #time {
       font-size: 200%;
       font-weight: bold;
     }
   </style>
 <body oncontextmenu="return false;">
+
+<div id="ui">
+  <div id="title">Minesweeper</div>
+  <div id="instructions">
+    Instructions
+    <ul>
+      <li>
+        The contents of each cell in the grid below are concealed.</li>
+      <li>Some of the cells are mines.</li>
+      <li>The goal of the game is to reveal all cells that are not mines.</li>
+      <li>Each non-mine cell whose neighboring cells are mines are labeled
+        with the number of neighboring cells that are mines.</li>
+      <li>Revealing a cell with no neighboring mines will also reveal its neighbors.</li>
+      <li>Left-clicking on a cell reveals its contents.</li>
+      <li>To help you with the deduction process, you can mark cells that you think are mines by right-cliking it.</li>
+    </ul>
+  </div>
+</div>
+
 </body>
 </html>

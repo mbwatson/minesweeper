@@ -1,7 +1,8 @@
 // Dimensions
 const sideLength = 500;
-const res = 25; // resolution, i.e., number of cells in each row/column
+const res = 100; // resolution, i.e., number of cells in each row/column
 const colors = {};
+const mineProbability = 0.15;
 
 function setup() {
 	// define colors
@@ -16,8 +17,6 @@ function setup() {
 	rows = floor(height / res);
 	// create game
 	game = new Game(cols, rows);
-	// initialize game board with some mines
-	// game.board.initializeCells();
 }
 
 function draw() {
@@ -25,28 +24,30 @@ function draw() {
 }
 
 function mouseReleased() {
-	// mark cell
-	if (mouseButton == RIGHT) {
-		for (var c = 0; c < game.board.cols; c++) {
-			for (var r = 0; r < game.board.rows; r++) {
-				if (game.board.cells[c][r].contains(mouseX, mouseY)) {
-					game.markCell(c,r);
+	if (!game.isWon()) {
+		// mark cell
+		if (mouseButton == RIGHT) {
+			for (var c = 0; c < game.board.cols; c++) {
+				for (var r = 0; r < game.board.rows; r++) {
+					if (game.board.cells[c][r].contains(mouseX, mouseY)) {
+						game.markCell(c,r);
+					}
 				}
 			}
 		}
-	}
-	// reveal cell
-	if (mouseButton == LEFT) {
-		for (var c = 0; c < game.board.cols; c++) {
-			for (var r = 0; r < game.board.rows; r++) {
-				if (game.board.cells[c][r].contains(mouseX, mouseY)) {
-					game.revealCell(c,r);
+		// reveal cell
+		if (mouseButton == LEFT) {
+			for (var c = 0; c < game.board.cols; c++) {
+				for (var r = 0; r < game.board.rows; r++) {
+					if (game.board.cells[c][r].contains(mouseX, mouseY)) {
+						game.revealCell(c,r);
+					}
 				}
 			}
 		}
-	// if (gameWon() == true) {
-	// 	console.log("Winner!");
-	// }
+		if (game.isWon()) {
+			console.log("You won!");
+		}
 	}
 	return false;
 }
@@ -58,3 +59,4 @@ function make2DArray(cols, rows) {
 	}
 	return arr;
 }
+
