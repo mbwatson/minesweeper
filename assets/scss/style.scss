@@ -1,10 +1,10 @@
 body {
 	text-align: center;
-  margin: 50px auto;
+  margin: 25px auto;
   font-family: 'sans serif';
   font-size: 12pt;
 }
-div { border: 1px solid #eee; }
+// div, span { border: 1px solid #eee; }
 #ui {
 	text-align: left;
 	margin: 0 50px;
@@ -31,19 +31,16 @@ div { border: 1px solid #eee; }
 }
 .stats {
   grid-area: stats;
-  padding: 1em;
   p {
     margin: 0.5em;
   }
 }
 .timer {
   grid-area: timer;
-  padding: 1em;
-  margin-top: auto;
-  margin-bottom: auto;
+  margin: auto;
+    font-size: 150%;
   #game-timer {
     grid-area: timer;
-    font-size: 200%;
     font-weight: bold;
     font-family: "monospace";
   }
@@ -51,6 +48,18 @@ div { border: 1px solid #eee; }
 .restart {
   grid-area: restart;
   margin: auto;
+  .button {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid #999;
+    padding: 1em;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  .button:hover {
+    background-color: #def;
+    transition: background-color 0.5s ease;
+  }
 }
 .messenger {
   grid-area: messenger;
