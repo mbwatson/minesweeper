@@ -2,73 +2,14 @@
 <html lang="en">
 <head>
   <title>Minesweeper</title>
-  <script src="js/libraries/p5.min.js" type="text/javascript"></script>
-  <script src="js/libraries/p5.dom.js" type="text/javascript"></script>
-  <script src="js/main.js" type="text/javascript"></script>
-  <script src="js/game.js" type="text/javascript"></script>
-  <script src="js/board.js" type="text/javascript"></script>
-  <script src="js/cell.js" type="text/javascript"></script>
-  <style type="text/css">
-  	body {
-  		text-align: center;
-      margin: 50px auto;
-      font-family: 'sans serif';
-      font-size: 12pt;
-  	}
-    /*div { border: 1px solid #eee; }*/
-  	#ui {
-  		text-align: left;
-  		margin: 0 50px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-areas: 
-        "title title title"
-        "instructions instructions instructions"
-        "stats timer restart"
-        "messenger messenger messenger";
-  	}
-    .title {
-      grid-area: title;
-      text-align: center;
-      font-weight: bold;
-      font-size: 150%;
-    }
-    .instructions {
-      grid-area: instructions;
-      font-size: 75%;
-    }
-    .instructions .title {
-      font-weight: bold;
-    }
-    .stats {
-      grid-area: stats;
-      padding: 1em;
-    }
-    .stats p {
-      margin: 0.5em;
-    }
-    .timer {
-      grid-area: timer;
-      padding: 1em;
-      margin-top: auto;
-      margin-bottom: auto;
-    }
-    #game-timer {
-      grid-area: timer;
-      font-size: 200%;
-      font-weight: bold;
-      font-family: "monospace";
-    }
-    .restart {
-      grid-area: restart;
-      margin: auto;
-    }
-    .messenger {
-      grid-area: messenger;
-      text-align: center;
-      font-size: 200%;
-    }
-  </style>
+  <script src="assets/js/libraries/p5.min.js" type="text/javascript"></script>
+  <script src="assets/js/libraries/p5.dom.js" type="text/javascript"></script>
+  <script src="assets/js/main.js" type="text/javascript"></script>
+  <script src="assets/js/game.js" type="text/javascript"></script>
+  <script src="assets/js/board.js" type="text/javascript"></script>
+  <script src="assets/js/cell.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
 <body oncontextmenu="return false;">
 
 <div id="ui">
