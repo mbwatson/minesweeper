@@ -4,9 +4,27 @@ class Game {
 		this.initializeCells();
 		this.minesCount = this.countMines();
 		this.alive = true;
+		this.startTime = new Date;
+		this.timer = 0;
+	}
+	message() {
+		if (this.isWon()) {
+			return `You've won in ${this.timer} seconds!`;
+		}
+		if (!this.alive) {
+			return 'You lose!';
+		}
+		return "&nbsp;";
+	}
+	update() {
+		if (this.alive && !this.isWon()) {
+			let timeNow = new Date;
+			this.timer = floor((timeNow - this.startTime)/1000);
+		}
 	}
 	isWon() {
 		return game.countRevealedCells() == game.countNonMines();
+		this.message = `You've won in ${this.timer} seconds!`;
 	}
 	countMines() {
 		let count = 0;

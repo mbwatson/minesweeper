@@ -1,9 +1,9 @@
 // Dimensions
 const sideLength = 500;
-const res = 100; // resolution, i.e., number of cells in each row/column
+const res = 50; // resolution, i.e., number of cells in each row/column
 const colors = {};
-const mineProbability = 0.15;
-
+const mineProbability = 0.05;
+	
 function setup() {
 	// define colors
 	colors.hidden = color(210, 210, 220);
@@ -17,10 +17,14 @@ function setup() {
 	rows = floor(height / res);
 	// create game
 	game = new Game(cols, rows);
+	// show game control ui
+	showGUI();
 }
 
 function draw() {
+	game.update();
 	game.board.draw();
+	updateGUI();
 }
 
 function mouseReleased() {
@@ -60,3 +64,21 @@ function make2DArray(cols, rows) {
 	return arr;
 }
 
+function showGUI() {
+  let minesCountDiv = document.getElementById("mines-count");
+  minesCountDiv.innerHTML = game.minesCount;
+}
+
+function updateGUI() {
+  let revealedCellsCountDiv = document.getElementById("revealed-cells-count");
+  revealedCellsCountDiv.innerHTML = game.countRevealedCells();
+  let timerSpan = document.getElementById("game-timer");
+  timerSpan.innerHTML = `${game.timer}`;
+  let messageSpan = document.getElementById("message");
+  messageSpan.innerHTML = game.message();
+}
+
+function newGame() {
+	console.log("New game...");
+	game = new Game(cols, rows);
+}
