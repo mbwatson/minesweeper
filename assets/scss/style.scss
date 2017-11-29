@@ -36,25 +36,27 @@ body {
     font-size: 75%;
     color: #667;
   }
+  .up-arrow, .down-arrow {
+    color: #778;
+    font-size: 75%;
+    cursor: pointer;
+    margin-left: 1em;
+  }
+  .up-arrow:before { content: "▲"; }
+  .down-arrow:before { content: "▼"; }
 }
-.up-arrow, .down-arrow {
-  color: #778;
-  font-size: 75%;
-  cursor: pointer;
-  margin-left: 1em;
-}
-.up-arrow:before { content: "▲"; }
-.down-arrow:before { content: "▼"; }
 .stats {
   grid-area: stats;
+  font-size: 85%;
   p {
     margin: 0.5em;
+    text-align: left;
   }
 }
 .timer {
   grid-area: timer;
-  margin: auto auto 0 auto;
-  font-size: 150%;
+  margin: auto auto 0.5em auto;
+  font-size: 125%;
   #game-timer {
     grid-area: timer;
     font-weight: bold;
@@ -66,13 +68,13 @@ body {
   .button {
     background-color: #fff;
     border-radius: 5px;
-    border: 1px solid #999;
-    padding: 1em;
+    border: 2px solid #666;
+    padding: 0.5em 1em;
     cursor: pointer;
     transition: background-color 0.5s ease;
   }
   .button:hover {
-    background-color: #def;
+    background-color: #fdd;
     transition: background-color 0.5s ease;
   }
 }
