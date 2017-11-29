@@ -1,59 +1,69 @@
-function Cell(x, y, isMine) {
-	this.x = x;
-	this.y = y;
-	this.isMine = isMine || false;
-	this.hidden = true;
-	this.value = -1;
-	this.fillcolor = hiddenColor;
-	this.marked = false;
-
-	this.show = function() {
+class Cell {
+	constructor(col, row, isMine) {
+		this.col = col;
+		this.row = row;
+		this.x = col * res;
+		this.y = row * res;
+		this.isMine = isMine || false;
+		this.hidden = true;
+		this.value = -1;
+		this.marked = false;
+	}
+	draw() {
 		if (this.hidden) {
-			if (this.marked) {
-				fill(markedColor);
-			} else {
-				fill(hiddenColor);
-			}
+			fill(colors.hidden);
 			rect(this.x, this.y, res, res);
-		} else {
-			fill(revealedColor);
+			if (this.marked) {
+				this.drawX();
+			}
+		} else { // this cell is revealed
+			fill(colors.revealed);
 			rect(this.x, this.y, res, res);
 			if (this.isMine) {
-				fill(150, 50, 50);
-				ellipse(this.x + res/2, this.y + res/2, 0.75*res, 0.75*res);
+				this.drawMine();
 			} else {
-				if (this.value != 0) {
-					textSize(14);
-					fill(0, 0, 0);
-					text(this.value, this.x + res/2 - 4, this.y + res/2 + 5);
+				if (this.value > 0) {
+					this.drawLabel();
 				}
 			}
 		}
 	}
-
-	this.contains = function(x, y) {
-		return (this.x < x-1 && x-1 < this.x + res && this.y < y-1 && y-1 < this.y + res);
+	drawMine() {
+		fill(color(255,0,0));
+		ellipse(this.x + res/2, this.y + res/2, res/2, res/2);
+	}
+	drawLabel() {
+		textAlign(CENTER, CENTER);
+		fill(0);
+		noStroke();
+		textSize(res/2);
+		text(this.value, this.x + res/2, this.y + res/2);
+		stroke(0);
 	}
 
-	this.reveal = function() {
-		if (this.hidden === true) {
-			this.hidden = false;
-			return 1;
-		} else {
-			return 0;
-		}
+	drawX() {
+		stroke(color(255,50,50));
+		line(this.x, this.y, this.x + res, this.y + res);
+		line(this.x, this.y + res, this.x + res, this.y);
+		stroke(0);
 	}
 
-	this.mark = function() {
+	mark() {
+		this.marked = !this.marked;
+		// console.log(`(un)mark cell (${this.x/res},${this.y/res})`);
+	}
+
+	reveal() {
 		if (this.hidden) {
-			if (this.marked) {
-				this.marked = false;
-				console.log("Unmark cell (" + this.x/res + "," + this.y/res + ")");
-			} else {
-				this.marked = true;
-				console.log("Mark cell (" + this.x/res + "," + this.y/res + ")");
-			}
+			this.hidden = false;
+			return true;
+		} else {
+			return false;
 		}
+	}
+
+	contains(x, y) {
+		return (this.x < x-1 && x-1 < this.x + res && this.y < y-1 && y-1 < this.y + res);
 	}
 
 }
