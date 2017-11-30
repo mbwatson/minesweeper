@@ -66,13 +66,14 @@ class Game {
 			}
 		}
 	}
-	revealNeighborsOfCell(i, j) {
+	async revealNeighborsOfCell(i, j) {
 		for (var c = -1; c <= 1; c++) {
 			for (var r = -1; r <=1; r++) {
 				if (0 <= i+c && i+c < cols && 0 <= j+r && j+r < rows) {
 					var neighbor = this.board.cells[i + c][j + r];
 					if (!neighbor.isMine && neighbor.hidden) {
 						neighbor.reveal();
+						await sleep(50);
 						if (neighbor.value == 0) {
 							this.revealNeighborsOfCell(i+c, j+r);
 						}
@@ -81,7 +82,7 @@ class Game {
 			}
 		}
 	}
-	revealAllCells() {
+	async revealAllCells() {
 		for (var i = 0; i < this.board.cols; i++) {
 			for (var j = 0; j < this.board.rows; j++) {
 				this.board.cells[i][j].reveal();
