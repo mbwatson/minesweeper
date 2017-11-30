@@ -28,6 +28,7 @@ body {
   border: 1px solid #ccd;
   border-width: 0 0 1px 0;
   padding: 1px;
+  margin-bottom: 1em;
   .title {
     font-weight: bold;
     padding: 2px;
@@ -111,8 +112,10 @@ body {
   top: 125%;
   right: 0;
   opacity: 0;
+  -webkit-transition: opacity 500ms ease;
+  -moz-transition: opacity 500ms ease;
+  -o-transition: opacity 500ms ease;
   transition: opacity 500ms ease;
-  // transition-delay: 1s;
 }
 
 .tooltip .tooltiptext::after {
@@ -120,15 +123,18 @@ body {
   position: absolute;
   top: -10px;
   left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
+  border: 5px solid;
   border-color: transparent transparent #ddd transparent;
 }
 
 .tooltip:hover .tooltiptext {
-  // visibility: visible;
   opacity: 1;
+  -webkit-transition: opacity 500ms ease;
+  -moz-transition: opacity 500ms ease;
+  -o-transition: opacity 500ms ease;
   transition: opacity 500ms ease;
+  -webkit-transition-delay: 1s;
+  -moz-transition-delay: 1s;
+  -o-transition-delay: 1s;
   transition-delay: 1s;
 }
