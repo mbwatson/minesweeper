@@ -47,6 +47,15 @@ class Game {
 		}
 		return count;
 	}
+	countMarkedCells() {
+		let count = 0;
+		for (var i = 0; i < this.board.cols; i++) {
+			for (var j = 0; j < this.board.rows; j++) {
+				count += this.board.cells[i][j].marked ? 1 : 0;
+			}
+		}
+		return count;
+	}
 	markCell(i,j) {
 		if (this.board.cells[i][j].hidden) {
 			this.board.cells[i][j].mark();

@@ -70,6 +70,8 @@ function updateGUI() {
   minesCountDiv.innerHTML = game.countMines();
   let revealedCellsCountDiv = document.getElementById("revealed-cells-count");
   revealedCellsCountDiv.innerHTML = game.countRevealedCells();
+  let markedCellsCountDiv = document.getElementById("marked-cells-count");
+  markedCellsCountDiv.innerHTML = game.countMarkedCells();
   let timerSpan = document.getElementById("game-timer");
   timerSpan.innerHTML = `${game.timer}`;
   let messageSpan = document.getElementById("message");
