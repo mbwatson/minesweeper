@@ -7,7 +7,8 @@ const mineProbability = 0.15;
 function setup() {
 	// define colors
 	colors.hidden = color(210, 210, 220);
-	colors.revealed = color(150, 190, 210);
+	colors.revealed = color(150, 200, 220);
+	colors.revealedEmpty = color(170, 210, 230);
 	colors.mine = color(200,50,50);
 	colors.marked = color(255, 127, 31);
 	createCanvas(sideLength + 1, sideLength + 1);

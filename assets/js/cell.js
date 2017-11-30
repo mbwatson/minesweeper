@@ -8,7 +8,6 @@ class Cell {
 		this.hidden = true;
 		this.value = -1;
 		this.marked = false;
-		this.revealTime = Infinity;
 	}
 	draw() {
 		if (this.hidden) {
@@ -18,7 +17,7 @@ class Cell {
 				this.drawX();
 			}
 		} else { // this cell is revealed
-			fill(colors.revealed);
+			fill( this.value > 0 ? colors.revealed : colors.revealedEmpty );
 			rect(this.x, this.y, res, res);
 			if (this.isMine) {
 				this.drawMine();
