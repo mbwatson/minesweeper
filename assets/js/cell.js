@@ -8,6 +8,7 @@ class Cell {
 		this.hidden = true;
 		this.value = -1;
 		this.marked = false;
+		this.revealTime = Infinity;
 	}
 	draw() {
 		if (this.hidden) {

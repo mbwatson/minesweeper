@@ -96,6 +96,7 @@ body {
 }
 // Arrow
 .tooltip .tooltiptext {
+  visibility: hidden;
   font-size: 75%;
   padding: 0.5em;
   color: #000;
@@ -121,13 +122,14 @@ body {
   border-color: transparent transparent #ddd transparent;
 }
 .tooltip:hover .tooltiptext {
+  visibility: visible;
   opacity: 1;
   -webkit-transition: opacity 500ms ease;
   -moz-transition: opacity 500ms ease;
   -o-transition: opacity 500ms ease;
   transition: opacity 500ms ease;
-  -webkit-transition-delay: 1s;
-  -moz-transition-delay: 1s;
-  -o-transition-delay: 1s;
-  transition-delay: 1s;
+  -webkit-transition-delay: 500ms;
+  -moz-transition-delay: 500ms;
+  -o-transition-delay: 500ms;
+  transition-delay: 500ms;
 }
