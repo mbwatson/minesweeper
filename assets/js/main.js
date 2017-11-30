@@ -17,7 +17,7 @@ function setup() {
 	// create game
 	game = new Game(cols, rows);
 	// show game control ui
-	showGUI();
+	updateGUI();
 }
 
 function draw() {
@@ -63,12 +63,9 @@ function make2DArray(cols, rows) {
 	return arr;
 }
 
-function showGUI() {
-  let minesCountDiv = document.getElementById("mines-count");
-  minesCountDiv.innerHTML = game.minesCount;
-}
-
 function updateGUI() {
+  let minesCountDiv = document.getElementById("mines-count");
+  minesCountDiv.innerHTML = game.countMines();
   let revealedCellsCountDiv = document.getElementById("revealed-cells-count");
   revealedCellsCountDiv.innerHTML = game.countRevealedCells();
   let timerSpan = document.getElementById("game-timer");
