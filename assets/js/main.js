@@ -78,3 +78,9 @@ function newGame() {
 	console.log("New game...");
 	game = new Game(cols, rows);
 }
+
+function keyPressed() {
+	if (key == 'N') {
+		newGame();
+	}
+}

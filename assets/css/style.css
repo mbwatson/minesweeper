@@ -74,4 +74,45 @@ body {
   text-align: center;
   font-size: 200%; }
 
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  /* If you want dots under the hoverable text */ }
+
+/* Tooltip text */
+.tooltip {
+  position: relative;
+  display: inline-block; }
+
+.tooltip .tooltiptext {
+  font-size: 75%;
+  padding: 0.5em;
+  color: #000;
+  background-color: #ddd;
+  text-align: center;
+  border-radius: 4px;
+  position: absolute;
+  z-index: 1;
+  top: 125%;
+  right: 0;
+  opacity: 0;
+  transition: opacity 500ms ease; }
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #ddd transparent; }
+
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+  transition: opacity 500ms ease;
+  transition-delay: 1s; }
+
 /*# sourceMappingURL=style.css.map */
