@@ -75,14 +75,10 @@ body {
   text-align: center;
   font-size: 200%; }
 
-/* Tooltip container */
 .tooltip {
   position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
-  /* If you want dots under the hoverable text */ }
+  display: inline-block; }
 
-/* Tooltip text */
 .tooltip {
   position: relative;
   display: inline-block; }
@@ -108,7 +104,7 @@ body {
   content: "";
   position: absolute;
   top: -10px;
-  left: 50%;
+  left: 66%;
   border: 5px solid;
   border-color: transparent transparent #ddd transparent; }
 

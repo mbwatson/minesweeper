@@ -84,26 +84,21 @@ body {
   text-align: center;
   font-size: 200%;
 }
-
-/* Tooltip container */
+// Tooltip container
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
-
-/* Tooltip text */
-
+// Tooltip text
 .tooltip {
   position: relative;
   display: inline-block;
 }
-
+// Arrow
 .tooltip .tooltiptext {
   font-size: 75%;
   padding: 0.5em;
   color: #000;
-  // visibility: hidden;
   background-color: #ddd;
   text-align: center;
   border-radius: 4px;
@@ -117,16 +112,14 @@ body {
   -o-transition: opacity 500ms ease;
   transition: opacity 500ms ease;
 }
-
 .tooltip .tooltiptext::after {
   content: "";
   position: absolute;
   top: -10px;
-  left: 50%;
+  left: 66%;
   border: 5px solid;
   border-color: transparent transparent #ddd transparent;
 }
-
 .tooltip:hover .tooltiptext {
   opacity: 1;
   -webkit-transition: opacity 500ms ease;
