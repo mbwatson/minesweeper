@@ -30,7 +30,8 @@ body {
     padding: 2px; }
   .instructions-container .instructions {
     font-size: 75%;
-    color: #667; }
+    color: #667;
+    display: none; }
   .instructions-container .up-arrow, .instructions-container .down-arrow {
     color: #778;
     font-size: 75%;
